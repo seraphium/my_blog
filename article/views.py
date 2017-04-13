@@ -3,14 +3,14 @@ from django.http import HttpResponse
 from article.models import Article 
 from datetime import datetime
 from django.http import Http404
-from django.contrib.syndication.views import Feed  #注意加入import语句
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  #添加包
+from django.contrib.syndication.views import Feed
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
 def home(request):
-    posts = Article.objects.all()  #获取全部的Article对象
-    paginator = Paginator(posts, 2)  # 每页显示两个
+    posts = Article.objects.all()
+    paginator = Paginator(posts, 2)
     page = request.GET.get('page')
     try:
         post_list = paginator.page(page)
