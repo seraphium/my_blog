@@ -15,16 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from article import views
-from article.views import RSSFeed
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home'),
-    url(r'^(?P<id>\d+)/$', views.detail, name='detail'),
-    url(r'^archives/$', views.archives, name='archives'),
-    url(r'^aboutme/$', views.about_me, name="about_me"),
-    url(r'^tag(?P<tag>\w+)/$', views.search_tag, name = 'search_tag'),
-    url(r'^search/$',views.blog_search, name = 'search'),
-    url(r'^feed/$', RSSFeed(), name = "RSS"),
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
